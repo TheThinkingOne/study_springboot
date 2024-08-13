@@ -24,8 +24,17 @@ public class CarsInfoService_Kiye {
 
         result.put("resultList", lky_dao.getList(sqlMapId, dataMap));
         return result;
-
-
     }
+
+    public Object delete(Map dataMap, String UNIQUE_ID) {
+        String sqlMapId = "CarInfors.deleteCarInfo";
+        dataMap.put("CI_PK",UNIQUE_ID);
+
+        Object result = lky_dao.delete(sqlMapId, dataMap);
+        return result;
+    }
+
+    // 외래키가 서로 조인되어 있어서 PK, FK 따로따로 삭제 메소드를 구현해야 하는건가?
+
 
 }

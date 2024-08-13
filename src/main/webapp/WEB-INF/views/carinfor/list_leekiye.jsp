@@ -29,9 +29,9 @@
                 </tr>
                 </thead>
                 <tbody id="carTableBody">
-                <% ArrayList resultList=(ArrayList)result.get("resultList");
+                <% ArrayList resultList = (ArrayList)result.get("resultList");
                     for(int i=0; i < resultList.size(); i=i+1){
-                        HashMap record=(HashMap)resultList.get(i); %>
+                        HashMap record = (HashMap)resultList.get(i); %>
                 <tr>
                     <td>
                         <%= record.get("회사이름") %>
@@ -44,6 +44,9 @@
                     </td>
                     <td>
                         <%= record.get("옵션 갯수") %>
+                    </td>
+                    <td>
+                        <button formaction='/carInforKiye/delete/<%= record.get("CI_PK") %>' formmethod="post">Del</button>
                     </td>
                 </tr>
                 <% } %>

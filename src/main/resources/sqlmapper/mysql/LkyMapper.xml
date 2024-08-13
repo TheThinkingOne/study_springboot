@@ -3,7 +3,7 @@
 <mapper namespace="CarInfors">
     <!-- 검색 -->
     <select id="selectTotalKiye" resultType="Map" parameterType="Map">
-        select CP_NAME as '회사이름', CAR_NAME as '자동차이름', DATE_YEAR as '연식', COUNT(`OPTION`) as '옵션 갯수'
+        select CP_NAME as '회사이름', CAR_NAME as '자동차이름', DATE_YEAR as '연식', COUNT(`OPTION`) as '옵션 갯수', CI.CI_PK as 'CI_PK'
         from CAR_INFO CI
                  INNER JOIN CAR_INFO_OPTIONS COP ON CI.CI_PK = COP.CI_FK
                  INNER JOIN COMPANY CP ON CP.CP_PK = CI.CP_FK
@@ -12,6 +12,14 @@
                  INNER JOIN OPTIONS OP ON OP.OP_PK = COP.OP_FK
         GROUP BY CP.CP_PK, CN.CN_PK, MY.YEAR_PK, CI.CI_PK
     </select>
+
+    <delete id="deleteCarInfo" parameterType="Map">
+        DELETE FROM CAR_INFO_OPTIONS
+        WHERE CI_FK = #{CI_PK};
+
+        DELETE FROM CAR_INFO
+        WHERE CI_PK = #{CI_PK};
+    </delete>
 
 
 </mapper>

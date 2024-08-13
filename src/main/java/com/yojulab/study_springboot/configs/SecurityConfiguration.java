@@ -30,8 +30,8 @@ public class SecurityConfiguration {
                         .anyRequest().permitAll()
                 ;
                 httpSecurity.formLogin(login -> login.loginPage("/loginForm")
-                                .failureUrl("/loginForm?fail=true")
-                                .loginProcessingUrl("/login")
+                                .failureUrl("/loginForm?fail=true") // 이거 담당하는 부분 컨트롤러에 있어야 한다?
+                                .loginProcessingUrl("/login") // 서비스를 호출c
                                 .defaultSuccessUrl("/"));
                 httpSecurity.logout(logout -> logout
                                 .logoutSuccessUrl("/main")
